@@ -1,0 +1,8 @@
+<h1>Item</h1>
+
+<p><%=@item.name%> - <%=@item.quantity%> </p>
+
+<form action="/items/<%=@item.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Item">
+</form>

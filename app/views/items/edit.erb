@@ -1,0 +1,6 @@
+<form action="/items/<%=@item.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>Item Name: <input type="text" name="item[name]" value="<%=@item.name%>"></p>
+  <p>Item Quantity: <input type="text" name="item[quantity]" value="<%=@item.quantity%>"></p>
+  <input type="submit" value="Edit Item">
+</form>
