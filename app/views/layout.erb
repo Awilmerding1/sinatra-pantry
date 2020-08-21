@@ -4,6 +4,15 @@
 
   </div>
 
+  <a href="/items">Items</a>
+  <% if current_user%>
+  <a href="/logout">Logout</a>
+  <%end%>
+
+  <% if !current_user%>
+    <a href="/login">Login</a>
+  <%end%>
+
   <div class="container">
       <%= yield%>
   </div>

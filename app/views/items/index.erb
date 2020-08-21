@@ -2,5 +2,5 @@
 
 
   <% @items.each do |i| %>
-    <li><%=i.name%> - <%=i.quantity%></li>
+    <li><a href="/items/<%=i.id%>"><%=i.name%> - <%=i.quantity%></a></li>
   <% end%>

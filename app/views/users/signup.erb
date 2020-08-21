@@ -1,3 +1,7 @@
+<%flash[:message] && flash[:message].each do |m|%>
+  <%=m%>
+<%end%>
+
 <form action="/signup" method="post">
   <p>Username: <input type="text" name="username"></p>
   <p>Password: <input type="password" name="password"></p>

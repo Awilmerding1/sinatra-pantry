@@ -1,27 +1,40 @@
 class UsersController < ApplicationController
 
   get '/signup' do
+
+    if current_user
+      redirect '/items'
+    end
     erb :'users/signup'
   end
 
   get '/login' do
+    if current_user
+      redirect '/items'
+    end
       erb :'users/login'
   end
 
   post '/login' do
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect "/users/#{user.id}"
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/users/#{@user.id}"
     else
-      redirect '/login'
+      flash[:message] = "Invalid Login"
+      erb :'/users/login'
     end
   end
 
   post '/signup' do
     user = User.create(params)
-    session[:user_id] = user.id
-    redirect "/users/#{user.id}"
+    if user.valid?
+      session[:user_id] = user.id
+      redirect "/users/#{user.id}"
+    else
+      flash[:message] = user.errors.full_messages
+      redirect '/signup'
+    end
   end
 
   get '/users/:id' do

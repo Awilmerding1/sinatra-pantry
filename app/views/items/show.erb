@@ -2,7 +2,10 @@
 
 <p><%=@item.name%> - <%=@item.quantity%> </p>
 
-<form action="/items/<%=@item.id%>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Item">
-</form>
+
+<% if @item.user == current_user%>
+  <form action="/items/<%=@item.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Item">
+  </form>
+<%end%>
